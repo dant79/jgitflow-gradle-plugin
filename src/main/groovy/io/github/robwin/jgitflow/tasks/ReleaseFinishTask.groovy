@@ -40,7 +40,7 @@ class ReleaseFinishTask extends DefaultTask {
         }
         CredentialsProviderHelper.setupCredentialProvider(project)
         JGitFlow flow = JGitFlow.get(project.rootProject.rootDir)
-        ReleaseMergeResult mergeResult = flow.releaseFinish(releaseVersion).call();
+        ReleaseMergeResult mergeResult = flow.releaseFinish(releaseVersion).setPush(pushRelease).call();
         if (!mergeResult.wasSuccessful())
         {
             if (mergeResult.masterHasProblems())

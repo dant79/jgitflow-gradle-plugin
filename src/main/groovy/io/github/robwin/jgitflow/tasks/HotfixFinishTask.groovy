@@ -31,7 +31,7 @@ class HotfixFinishTask extends DefaultTask {
         String hotfixName = project.property('hotfixName')
         CredentialsProviderHelper.setupCredentialProvider(project)
         JGitFlow flow = JGitFlow.get(project.rootProject.rootDir)
-        ReleaseMergeResult mergeResult = flow.hotfixFinish(hotfixName).call();
+        ReleaseMergeResult mergeResult = flow.hotfixFinish(hotfixName).setPush(true).call();
         if (!mergeResult.wasSuccessful())
         {
             if (mergeResult.masterHasProblems())
